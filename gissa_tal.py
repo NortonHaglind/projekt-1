@@ -6,70 +6,88 @@ life=7
 game_active=True
 acceptable = ["/s", "/f", "/q"] #lista för de som funkar
 
-"""print(f"""##################################################################
+print(f"""        ##################################################################
         ##################################################################
         ##                                                              ##                                                         
+        ##                 ..           __             __               ##
+        ##           \  /  /\  |   |/  |  | |\/| |\/| |__ |\ |          ##
+        ##            \/  /  \ |__ |\  |__| |  | |  | |__ | \|          ##
         ##                                                              ##
+        ##                      _____                                   ##
+        ##                        |   | |   |                           ##
+        ##                        |   | |__ |__                         ##
         ##                                                              ##
+        ##                    ___     __   __    _                      ##
+        ##                   |  __ | |__  |__   /_\                     ##
+        ##                   |___| |  __|  __| /   \                    ##
         ##                                                              ##
-        ##                                                              ##
-        ##                                                              ##
-        ##                                                              ##
-        ##                                                              ##
-        ##                                                              ##
-        ##                                                              ##
-        ##                                                              ##
-        ##                                                              ##
-        ##                                                              ##
-        ##                                                              ##
-        ##                                                              ##
-        ##                                                              ##
+        ##                  _____   _        __ _____                   ##
+        ##                    |    /_\  |   |__   |                     ##
+        ##                    |   /   \ |__ |__   |                     ##
         ##                                                              ##
         ##                                                              ##
         ##################################################################
         ##################################################################""")
 
 
-print(f"""          Vill du starta skriv /s
-          Vill du fuska skriv /f
-          Vill du lämna skriv /q""")
+
 
 
 
 while game_active:
-    start=input("")
-    if start in acceptable: #om det du skrev funkar
-        if start=="/q":
-            break
-        elif start=="/f":
-            print(f"{number}")
-        elif start=="/s":
-            print(f"då kör vi")        
-    else:
-        print(f"skriv en av dem")
-        continue
+    
 
     print(f"Gissa talet!")
     while game_active:
-        try:
-            guess=int(input("Skriv ditt tal!: "))
-        except: 
-            print(f"skriv faktiskt ett tal🤓🤓🤓")
+        while True:
+            try:
+                guess=int(input("Skriv ditt tal!: "))
+                break
+            except: 
+                print(f"skriv faktiskt ett tal🤓🤓🤓")
+                continue
+        
+        
             
-        if guess==number:
+        if life==1:
+            print(f"du dogade. talet var {number}")
+            print(f"""            Vill du försöka igen? skriv /s
+            Vill du fusk-köra igen? skriv /f
+            Vill du ge upp? skriv /q""")
+            while True:
+                start=input("")
+                if start in acceptable: #om det du skrev funkar
+                    if start=="/q":
+                        print(f"gg loser ;)")
+                        game_active=False
+                        break
+                    elif start=="/f":
+                        print(f"{number}")
+                        life=7
+                        break
+                    elif start=="/s":
+                        print(f"då kör vi")  
+                        life=7  
+                        break 
+                else:
+                    print(f"skriv en av dem")
+                    continue   
+        
+        elif guess==number:
             print(f"WOHO du klara det!!")
             print(f"Du klara det med {life} liv kvar!")
             game_active=False
         elif guess>number:
             print(f"Talet är lägre")
-            life=-1
+            life= life-1
             print(f"Du har {life} kvar")
             continue
         elif guess<number:
             print(f"Talet är högre")
-            life=-1
+            life= life-1
             print(f"Du har {life} kvar")
             continue
+          
         
 
 
