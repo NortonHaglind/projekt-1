@@ -34,61 +34,60 @@ print(f"""        ##############################################################
 
 
 
-while game_active:    
+   
+    
+while game_active:
     print(f"Gissa talet!")
-    while game_active:
-        while True:
-            try:
-                guess=int(input("Skriv ditt tal!: "))
-                break
-            except: 
-                print(f"skriv faktiskt ett tal🤓🤓🤓")
-                continue
+    while True:
+        try:
+            guess=int(input("Skriv ditt tal!: "))
+            break
+        except: 
+            print(f"skriv faktiskt ett tal🤓🤓🤓")
+            continue
+    
+    if guess==number:
+        life=life-1
+        print(f"WOHO du klara det!!")
+        print(f"Du klara det på {7-life} försök!")
+        game_active=False    
+    elif life==1:
+        print(f"du dogade. talet var {number}")
         
-        if guess==number:
-            life=life-1
-            print(f"WOHO du klara det!!")
-            print(f"Du klara det på {7-life} försök!")
-            game_active=False    
-        elif life==1:
-            print(f"du dogade. talet var {number}")
-            
-            print(f"""            Vill du försöka igen? skriv /s
+        print(f"""            Vill du försöka igen? skriv /s
             Vill du fusk-köra igen? skriv /f
             Vill du ge upp? skriv /q""")
-
-            while True:
-                start=input("")
-                
-                if start in acceptable: #om det du skrev funkar
-                    if start=="/q":
-                        print(f"gg loser ;)")
-                        game_active=False
-                        break
-
-                    elif start=="/f":
-                        number=random.randint(1, 100)
-                        print(f"{number}")
-                        life=7
-                        break
-                    elif start=="/s":
-                        number=random.randint(1, 100)
-                        print(f"då kör vi")  
-                        life=7  
-                        break    
-                else:
-                    print(f"skriv en av dem")
-                    continue 
-        elif guess>number:
-            print(f"Talet är lägre")
-            life= life-1
-            print(f"Du har {life} försök kvar")
-            continue
-        elif guess<number:
-            print(f"Talet är högre")
-            life= life-1
-            print(f"Du har {life} försök kvar")
-            continue
+        while True:
+            start=input("")
+            
+            if start in acceptable: #om det du skrev funkar
+                if start=="/q":
+                    print(f"gg loser ;)")
+                    game_active=False
+                    break
+                elif start=="/f":
+                    number=random.randint(1, 100)
+                    print(f"{number}")
+                    life=7
+                    break
+                elif start=="/s":
+                    number=random.randint(1, 100)
+                    print(f"då kör vi")  
+                    life=7  
+                    break    
+            else:
+                print(f"skriv en av dem")
+                continue 
+    elif guess>number:
+        print(f"Talet är lägre")
+        life= life-1
+        print(f"Du har {life} försök kvar")
+        continue
+    elif guess<number:
+        print(f"Talet är högre")
+        life= life-1
+        print(f"Du har {life} försök kvar")
+        continue
          
         
 
